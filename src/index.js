@@ -2,6 +2,6 @@ import startOracle from "./oracle";
 import startConsumer from "./consumer";
 import startClient from "./client";
 
-startOracle();
+//startOracle();
 startConsumer();
-//startClient();
+startClient();
