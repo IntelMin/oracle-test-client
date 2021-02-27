@@ -1,11 +1,16 @@
 require("dotenv").config();
 
 import {
-  createRequest
+  createRequest,
+  getRating
 } from "./ethereum";
 
 
 const start = () => {
+  // getRating("0xD06777d9b02F677214073cC3C5338904CBa7894a")
+  // .then(console.log)
+  // .catch(error);
+  // return;
 
   let urlToQuery = 'https://www.bird.money/analytics/address/0xD06777d9b02F677214073cC3C5338904CBa7894a';
   let attributeToFetch = 'bird_rating';

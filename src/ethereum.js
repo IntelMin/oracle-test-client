@@ -9,10 +9,6 @@ const address = process.env.CONTRACT_ADDRESS;
 // const contract = web3.eth.contract(abi).at(address);
 const contract = new web3.eth.Contract(abi, address);
 const private_keys = [
-  '0xca6630593fa827d514e3fe5dd63dac94bf150086c201941fd1fbec3c67055219',
-  '0xf725cf1a50e4eeadf06b418dca953b535ab2818209076f895aadfa85638ae6e8',
-  '0xe047a039568ccd24ad227ad87889877fd4c59c59ef78f34569ef28cd1d0d66e3',
-  '0xd564438dc076a603f1bea4f087b8d588f71a3bb9850c7c90799de28510ef8cb9'
 ];
 
 const sendMethod = (privateKey, encodedABI) => {
@@ -52,6 +48,7 @@ export const createRequest = ({
       .catch(reject)
   });
 };
+
 export const updateRequest = (index) => ({
   id,
   valueRetrieved
@@ -63,6 +60,20 @@ export const updateRequest = (index) => ({
       .then(resolve)
       .catch(reject)
   });   
+};
+
+export const getRating = (address) => {
+  return new Promise((resolve, reject) => {
+    const privateKey = private_keys[process.env.ACCOUNT_NUMBER];
+    const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+    console.log("Calling smart contract from ", account.address);
+    contract.methods.getRating(address).call({
+      from: account,
+      gas: 600000
+    })
+    .then(resolve)
+    .catch(reject);
+  });
 };
 
 export const newRequest = (callback) => {
